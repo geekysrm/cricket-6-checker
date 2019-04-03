@@ -9,14 +9,18 @@ export async function getHTML(url) {
 export async function scrapeRuns(html) {
 	// load up cheerio
 	const $ = cheerio.load(html);
-	const span = $('[data-nav="followers"] .ProfileNav-value');
 	const scrapedRuns = $(".ui-branding-style-partner")
 		.children()
 		.children()
 		.children()
 		.children()[7].children[0].data;
-	console.log(scrapedRuns); //string
-	return scrapedRuns;
+	const currentStatus = $(".ui-bat-team-scores").text();
+	const currentTeam = currentStatus.split(" - ")[0];
+	const currentOver = currentStatus.match(/\((.*)\)/)[1];
+	// return scrapedRuns;
+	console.log(scrapedRuns);
+	console.log(currentTeam);
+	console.log(currentOver);
 }
 
 export async function getRuns() {
@@ -24,7 +28,8 @@ export async function getRuns() {
 		"https://m.cricbuzz.com/cricket-commentary/22410/mi-vs-csk-15th-match-indian-premier-league-2019"
 	);
 	const runs = await scrapeRuns(html);
-	return runs;
+
+	// return runs;
 }
 
 getRuns();
