@@ -33,5 +33,3 @@ export async function getRuns() {
 }
 
 getRuns();
-
-//https://nostalgic-fermi-0b26e2.netlify.com/
